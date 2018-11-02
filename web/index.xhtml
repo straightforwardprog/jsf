@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Gestion Des Produits</title>
+    </h:head>
+    <h:body>
+      
+
+        <h:panelGroup rendered="#{!controller.edit}">
+		<h3>Ajouter Produit</h3>
+		<h:form>
+                    <p>ID: <h:inputText value="#{controller.item.id}" /></p>
+                    <p>Titre: <h:inputText value="#{controller.item.titre}" /></p>
+                    <p>Prix: <h:inputText value="#{controller.item.prix}" /></p>
+			<p>
+				<h:commandButton value="add" action="#{controller.add}" />
+				<h:commandButton value="reset" action="#{controller.resetAdd}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	
+	<h:panelGroup rendered="#{controller.edit}">
+		<h3>Modification produit #{controller.item.id}</h3>
+		<h:form>
+			<p>ID: <h:inputText value="#{controller.item.id}" /></p>
+                    <p>Titre: <h:inputText value="#{controller.item.titre}" /></p>
+                    <p>Prix: <h:inputText value="#{controller.item.prix}" /></p>
+			<p>
+				<h:commandButton value="save" action="#{controller.saveEdit}" />
+				<h:commandButton value="cancel" action="#{controller.cancelEdit}" />
+			</p>
+		</h:form>
+	</h:panelGroup>
+	
+        
+        	<h3>List Des Produits</h3>
+
+            
+        <p:dataTable value="#{controller.list}" var="item">
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="ID"></h:outputText>
+		</f:facet>
+            <h:outputText value="#{item.id}"></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Titre"></h:outputText>
+		</f:facet>
+            <h:outputText value="#{item.titre}"></h:outputText>
+	</p:column>
+        <p:column>
+		<f:facet name="header">
+			<h:outputText value="Prix"></h:outputText>
+		</f:facet>
+            <h:outputText value="#{item.prix}"></h:outputText>
+	</p:column>
+    
+    <p:column>
+		<f:facet name="header">
+			<h:outputText value="Modifier"></h:outputText>
+		</f:facet>
+           <h:commandButton value="edit" action="#{controller.edit(item)}" />
+    </p:column>
+    <p:column>
+		<f:facet name="header">
+			<h:outputText value="Supprimer"></h:outputText>
+		</f:facet>
+            <h:commandButton value="edit" action="#{controller.edit(item)}" />
+    </p:column>
+</p:dataTable>
+            
+
+</h:body>
+</html>
+
